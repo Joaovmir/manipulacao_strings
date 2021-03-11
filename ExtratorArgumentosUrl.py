@@ -5,6 +5,18 @@ class ExtratorArgumentosUrl:
         else:
             raise LookupError('Url inválida !!!!')
 
+    def __len__(self):
+        return len(self.url)
+
+    def __str__(self):
+        moedaOrigem, moedaDestino = self.extraiArgumentos()
+        representacaoString2 = 'Valor: ' + self.extraiValor() + ' ' + moedaOrigem + ' ' + moedaDestino
+        representacaoString = 'Valor: {}\nMoeda origem: {}\nMoeda destino: {}\n'.format(self.extraiValor(), moedaOrigem, moedaDestino)
+        return representacaoString
+
+    def __eq__(self, outraInstancia):
+        return self.url == outraInstancia.url
+
     @staticmethod
     def urlEhValida(url):
         if url and url.startswith('https://bytebank.com'):
