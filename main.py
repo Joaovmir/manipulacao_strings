@@ -1,33 +1,77 @@
-# Vídeo 02 - Iniciando com strings
+from ExtratorArgumentosUrl import ExtratorArgumentosUrl
 
-meuNome = 'Rodrigo'
-minhaIdade = 26
-sobreMim = 'Meu nome é Rodrigo e minha idade é 26'
+# Vídeo 01 - None, empty e o if do Python
 
-print(meuNome)
-print(type(meuNome))
-print(minhaIdade)
-print(type(minhaIdade))
-print(sobreMim)
-print(type(sobreMim))
+string = None
+print(string is None)
 
-# Vídeo 03 - Fatiamento e índices de strings
+string = ''
+print(string is None)
 
-sobreMim = 'Meu nome é Rodrigo e minha idade é 26'
+if string:
+    print('Tem algo Aqui')
+else:
+    print('Não tem nada Aqui!!')
 
-substring = sobreMim[35:]
+string = 'Rogrigo'
+
+if string:
+    print('Tem algo Aqui')
+else:
+    print('Não tem nada Aqui!!')
+
+string = 12
+
+if string:
+    print('Tem algo Aqui')
+else:
+    print('Não tem nada Aqui!!')
+
+string = 0
+
+if string:
+    print('Tem algo Aqui')
+else:
+    print('Não tem nada Aqui!!')
+
+url = "https://www.bytebank.com.br/cambio?moedaorigem=real&moedadestino=dolar&valor=700"
+argumento = ExtratorArgumentosUrl.urlEhValida(url) 
+
+print(argumento)
+
+url = None
+argumento = ExtratorArgumentosUrl.urlEhValida(url) 
+
+print(argumento)
+
+# Vídeo 03 - Construindo mais métodos
+
+"""
+Método na classe ExtratorArgumentos, feito no vídeo 03:
+
+        def extraiArgumentos(self):
+        
+        indiceInicialMoedaDestino = self.url.find('=', 15) + 1
+
+        indiceInicialMoedaOrigem = self.url.find('=') + 1
+        indiceFinalMoedaOrigem = self.url.find('&')
+
+        moedaOrigem = self.url[indiceInicialMoedaOrigem:indiceFinalMoedaOrigem]
+        moedaDestino = self.url[indiceInicialMoedaDestino:]
+
+        return moedaOrigem, moedaDestino
+"""
+url = "moedaorigem=real&moedadestino=dolar"
+
+argumentoUrl = ExtratorArgumentosUrl(url)
+
+moedaOrigem, moedaDestino = argumentoUrl.extraiArgumentos()
+print(moedaOrigem, moedaDestino)
+
+# Vídeo 04 - O método len
+
+url = "https://www.bytebank.com.br/cambio?moedaorigem=real&moedadestino=dolar"
+
+index = url.find('moedadestino') + len('moedadestino') + 1
+substring = url[index:]
 print(substring)
-
-argumento = 'moedaorigem=real'
-substring = argumento[:11]
-print(substring)
-
-# Vídeo 04 - O método find
-
-argumento = 'moedaorigem=real'
-index = argumento.find('=')
-substring = argumento[index + 1:]
-
-argumento = 'moedaorigem=real'
-listaargumentos = argumento.split('=')
-print(listaargumentos)
